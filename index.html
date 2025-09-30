@@ -43,56 +43,88 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ABG-Engineering</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-image: url('https://drive.google.com/file/d/11oo5PJFIWLt1tp9gVwRPaYk3eb_Qjbo1/view?usp=sharing'); /* Replace with the actual image URL */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+        body::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(240, 240, 240, 0.8); /* Light gray overlay */
+            z-index: -1;
+        }
+        header {
+            background-color: transparent;
+            color: #333;
+            text-align: center;
+            padding: 2em;
+        }
+        section {
+            margin: 2em;
+            color: #333;
+        }
+        footer {
+            background-color: transparent;
+            color: #333;
+            text-align: center;
+            padding: 1em;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
 </head>
-<body class="bg-gray-100 font-sans">
-    <header class="bg-blue-800 text-white py-6">
-        <div class="container mx-auto px-4">
-            <h1 class="text-3xl font-bold">ABG-Engineering</h1>
-            <p class="mt-2 text-lg">Geotechnical Services</p>
-        </div>
+<body>
+    <header>
+        <h1>ABG-Engineering</h1>
+        <h2>Geotechnical Services</h2>
     </header>
 
-    <section id="about" class="py-12">
-        <div class="container mx-auto px-4">
-            <h2 class="text-2xl font-semibold text-blue-800 mb-4">About Us</h2>
-            <p class="text-gray-700">
-                Our firm has over a decade of experience in geotechnical engineering, geotechnical investigations, foundation studies, slope stability, and ground improvement for residential, commercial, and industrial purposes. Dr. Ben Ghorbanpour, the owner, holds a PhD in geotechnical engineering and brings over a decade of geotechnical consulting experience to deliver innovative and reliable solutions.
-            </p>
-        </div>
+    <section>
+        <h3>About Us</h3>
+        <p>
+            Our firm has over a decade of experience in geotechnical engineering, geotechnical investigations, foundation studies, slope stability, and ground improvement for residential, commercial, and industrial purposes. Dr. Ben Ghorbanpour, the owner, holds a PhD in geotechnical engineering and brings over a decade of geotechnical consulting experience to deliver innovative and reliable solutions.
+        </p>
     </section>
 
-    <section id="services" class="bg-white py-12">
-        <div class="container mx-auto px-4">
-            <h2 class="text-2xl font-semibold text-blue-800 mb-4">Our Services</h2>
-            <ul class="list-disc list-inside text-gray-700 space-y-2">
-                <li>Foundation Engineering</li>
-                <li>Site Investigations and Geotechnical Drilling</li>
-                <li>Soil Report</li>
-                <li>Slope Stability Evaluations</li>
-                <li>Retaining Wall Design</li>
-                <li>Ground Improvement</li>
-                <li>Seismic Evaluations</li>
-                <li>Geotechnical Inspections</li>
-            </ul>
-        </div>
+    <section>
+        <h3>Our Services</h3>
+        <ul>
+            <li>Foundation Engineering</li>
+            <li>Site Investigations and Geotechnical Drilling</li>
+            <li>Soil Report</li>
+            <li>Slope Stability Evaluations</li>
+            <li>Retaining Wall Design</li>
+            <li>Ground Improvement</li>
+            <li>Seismic Evaluations</li>
+            <li>Geotechnical Inspections</li>
+        </ul>
     </section>
 
-    <section id="contact" class="py-12">
-        <div class="container mx-auto px-4">
-            <h2 class="text-2xl font-semibold text-blue-800 mb-4">Contact Us</h2>
-            <p class="text-gray-700">
-                Email: <a href="mailto:info@abg-engineering.com" class="text-blue-600 hover:underline">info@abg-engineering.com</a><br>
-                Phone: <a href="tel:817-291-2915" class="text-blue-600 hover:underline">817-291-2915</a><br>
-                Address: 13755 W Amherst Way, Lakewood, CO 80228
-            </p>
-        </div>
+    <section>
+        <h3>Contact Us</h3>
+        <p>
+            Email: info@abg-engineering.com
+            <br>
+            Phone: 817-291-2915
+            <br>
+            Address: 13755 W Amherst Way, Lakewood, CO 80228
+        </p>
     </section>
 
-    <footer class="bg-blue-800 text-white py-6">
-        <div class="container mx-auto px-4 text-center">
-            <p>&copy; 2025 ABG-Engineering. All rights reserved.</p>
-        </div>
+    <footer>
+        <p>© 2025 ABG-Engineering. All rights reserved.</p>
     </footer>
 </body>
 </html>
