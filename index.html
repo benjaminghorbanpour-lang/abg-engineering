@@ -220,80 +220,77 @@ footer {
     background-color: #218838; /* Darker green on hover */
 }
 .why-choose-us {
-    max-width: 800px; /* Center and constrain width */
-    margin: 2em auto; /* Center the section */
+    max-width: 800px;
+    margin: 2em auto;
     text-align: center;
 }
 
 .why-choose-us h3 {
-    font-size: 2em; /* Bigger header */
-    color: #e67e22; /* Vibrant orange for energy */
+    font-size: 2em;
+    color: #e67e22;
     margin-bottom: 1.5em;
-    text-transform: uppercase; /* Adds authority */
+    text-transform: uppercase;
 }
 
 .why-choose-us-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid */
-    gap: 1.5em; /* Space between cards */
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.125em;
     padding: 0;
     list-style: none;
 }
 
 .why-choose-us-grid li {
-    background-color: rgba(255, 255, 255, 0.9); /* White with slight transparency */
-    padding: 1.5em;
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 1.125em;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
     position: relative;
-    font-size: 1.3em; /* Bigger, bolder text */
+    font-size: 0.975em;
     font-weight: bold;
     color: #333;
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover */
-    animation: popIn 0.5s ease-out forwards; /* Load animation */
-    opacity: 0; /* Start invisible for animation */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: popIn 0.5s ease-out forwards;
+    opacity: 0;
 }
 
-/* Hover effect */
 .why-choose-us-grid li:hover {
-    transform: scale(1.05); /* Slight zoom */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15), 0 0 0 3px #e67e22; /* Shadow + orange border */
+    transform: scale(1.05);
+    box-shadow: 0 4.5px 9px rgba(0, 0, 0, 0.15), 0 0 0 2.25px #e67e22;
 }
 
-/* Custom icons */
 .why-choose-us-grid li::before {
     content: "";
     display: block;
-    font-size: 2em; /* Large icons */
-    color: #e67e22; /* Orange icons */
-    margin-bottom: 0.5em;
+    font-size: 1.5em;
+    color: #e67e22;
+    margin-bottom: 0.375em;
 }
 
 .why-choose-us-grid .colorado::before {
-    content: "🏔️"; /* Mountain for Colorado */
+    content: "🏔️";
 }
 
 .why-choose-us-grid .pricing::before {
-    content: "💰"; /* Money for pricing */
+    content: "💰";
 }
 
 .why-choose-us-grid .service::before {
-    content: "⚡"; /* Lightning for fast service */
+    content: "⚡";
 }
 
 .why-choose-us-grid .engineers::before {
-    content: "🛠️"; /* Tools for engineers */
+    content: "🛠️";
 }
 
 .why-choose-us-grid .family::before {
-    content: "🏡"; /* House for family-owned */
+    content: "🏡";
 }
 
 .why-choose-us-grid .responsive::before {
-    content: "💬"; /* Chat for responsive */
+    content: "💬";
 }
 
-/* Pop-in animation keyframes */
 @keyframes popIn {
     0% {
         opacity: 0;
@@ -305,13 +302,12 @@ footer {
     }
 }
 
-/* Stagger animation for each card */
 .why-choose-us-grid li:nth-child(1) { animation-delay: 0.1s; }
 .why-choose-us-grid li:nth-child(2) { animation-delay: 0.2s; }
 .why-choose-us-grid li:nth-child(3) { animation-delay: 0.3s; }
 .why-choose-us-grid li:nth-child(4) { animation-delay: 0.4s; }
-.why-choose-us-grid li:nth-child(5) { animation-delay: 0.5s; } /* New */
-.why-choose-us-grid li:nth-child(6) { animation-delay: 0.6s; } /* New */
+.why-choose-us-grid li:nth-child(5) { animation-delay: 0.5s; }
+.why-choose-us-grid li:nth-child(6) { animation-delay: 0.6s; }
     </style>
 </head>
 <body>
@@ -333,8 +329,6 @@ footer {
     <ul class="why-choose-us-grid">
         <li class="colorado">Colorado-based</li>
         <li class="pricing">Competitive pricing</li>
-        <li class="service">Fast turnaround</li>
-        <li class="engineers">Licensed engineers</li>
         <li class="family">Small firm</li>
         <li class="responsive">Responsive</li>
     </ul>
