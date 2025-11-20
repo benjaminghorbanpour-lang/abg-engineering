@@ -1,0 +1,475 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABG-Engineering</title>
+    <style>
+        .logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2em;
+    position: relative;
+}
+
+.logo-container::before {
+    content: "";
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white backdrop */
+    border-radius: 50%; /* Circular shape */
+    z-index: -1; /* Behind the logo */
+    filter: blur(10px); /* Soft blur for depth */
+}
+
+.logo-img {
+    max-width: 400px; /* Adjust based on your logo size */
+    height: auto;
+    border-radius: 50%; /* Circular frame */
+    border: 4px solid transparent; /* Space for gradient */
+    background: linear-gradient(45deg, #e67e22, #0056b3); /* Orange-to-blue gradient */
+    padding: 4px; /* Space between logo and border */
+    animation: logoFadeIn 1s ease-out; /* Load animation */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover */
+}
+
+.logo-img:hover {
+    transform: rotate(10deg) scale(1.1); /* Slight rotation and zoom */
+    box-shadow: 0 0 15px rgba(230, 126, 34, 0.7); /* Orange glow */
+}
+
+/* Fade-in and scale animation */
+@keyframes logoFadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+body {
+            background-image: url('https://hadinc.com/images/environmental-geotech/geoprobe-7822dt/geoprobe-7822dt-03.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            min-height: 100vh; /* Added */
+            display: flex;     /* Added */
+            flex-direction: column; /* Added */
+        }
+        body::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(240, 240, 240, 0.8); /* Light gray overlay */
+            z-index: -1;
+        }
+        header {
+            background-color: transparent;
+            color: #333;
+            text-align: center;
+            padding: 2em;
+        }
+        section {
+            margin: 2em;
+            color: #333;
+        }
+footer {
+            background-color: transparent;
+            color: #333;
+            text-align: center;
+            padding: 1em;
+            margin-top: auto; /* Added */
+        }
+        .checkmark-list {
+        list-style: none; /* Remove default bullets */
+        padding: 0;
+    }
+    .checkmark-list li {
+        position: relative;
+        padding-left: 2em; /* Space for checkmark */
+        margin-bottom: 0.5em;
+    }
+    .checkmark-list li::before {
+        content: "✓"; /* Unicode checkmark */
+        position: absolute;
+        left: 0;
+        color: green; /* Green color */
+        font-size: 1.2em; /* Adjust size */
+    }
+    .contact-us {
+    background-color: rgba(173, 216, 230, 0.8); /* Light blue overlay for interest, semi-transparent */
+    padding: 2em;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    max-width: 600px; /* Center it nicely */
+    margin: 2em auto; /* Center the section */
+}
+
+.contact-us h3 {
+    font-size: 2em; /* Bigger header */
+    color: #0056b3; /* Bold blue color for engineering vibe */
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.contact-list {
+    list-style: none;
+    padding: 0;
+    font-size: 1.2em; /* Bigger text */
+}
+
+.contact-list li {
+    margin-bottom: 1em;
+    position: relative;
+    padding-left: 2.5em; /* Space for icons */
+    font-weight: bold; /* Bolder text */
+    transition: transform 0.3s ease, color 0.3s ease; /* For hover animation */
+}
+
+.contact-list li:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+    color: #0056b3; /* Change to blue on hover */
+}
+
+.contact-list li::before {
+    position: absolute;
+    left: 0;
+    font-size: 1.5em; /* Bigger icons */
+    color: #28a745; /* Green for positivity */
+}
+
+.contact-list .email::before {
+    content: "✉️"; /* Envelope icon */
+}
+
+.contact-list .phone::before {
+    content: "📞"; /* Phone icon */
+}
+
+.contact-list .address::before {
+    content: "📍"; /* Map pin icon */
+}
+
+.cta-button {
+    display: block;
+    text-align: center;
+    margin-top: 1.5em;
+}
+
+.cta-button a {
+    background-color: #28a745; /* Green button */
+    color: white;
+    padding: 0.8em 1.5em;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button a:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+.why-choose-us {
+    max-width: 800px;
+    margin: 2em auto;
+    text-align: center;
+}
+
+.why-choose-us h3 {
+    font-size: 2em;
+    color: #e67e22;
+    margin-bottom: 1.5em;
+    text-transform: uppercase;
+}
+
+.why-choose-us-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.125em;
+    padding: 0;
+    list-style: none;
+}
+
+.why-choose-us-grid li {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 1.125em;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    font-size: 0.975em;
+    font-weight: bold;
+    color: #333;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: popIn 0.5s ease-out forwards;
+    opacity: 0;
+}
+
+.why-choose-us-grid li:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4.5px 9px rgba(0, 0, 0, 0.15), 0 0 0 2.25px #e67e22;
+}
+
+.why-choose-us-grid li::before {
+    content: "";
+    display: block;
+    font-size: 1.5em;
+    color: #e67e22;
+    margin-bottom: 0.375em;
+}
+
+.why-choose-us-grid .colorado::before {
+    content: "🏔️";
+}
+
+.why-choose-us-grid .pricing::before {
+    content: "💰";
+}
+
+.why-choose-us-grid .service::before {
+    content: "⚡";
+}
+
+.why-choose-us-grid .engineers::before {
+    content: "🛠️";
+}
+
+.why-choose-us-grid .family::before {
+    content: "🏡";
+}
+
+.why-choose-us-grid .responsive::before {
+    content: "💬";
+}
+
+@keyframes popIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.why-choose-us-grid li:nth-child(1) { animation-delay: 0.1s; }
+.why-choose-us-grid li:nth-child(2) { animation-delay: 0.2s; }
+.why-choose-us-grid li:nth-child(3) { animation-delay: 0.3s; }
+.why-choose-us-grid li:nth-child(4) { animation-delay: 0.4s; }
+.why-choose-us-grid li:nth-child(5) { animation-delay: 0.5s; }
+.why-choose-us-grid li:nth-child(6) { animation-delay: 0.6s; }
+    </style>
+</head>
+<body>
+<header>
+    <div class="logo-container">
+        <img src="https://raw.githubusercontent.com/benjaminghorbanpour-lang/abg-engineering/refs/heads/main/logo.jpg" alt="ABG Engineering LLC Logo" class="logo-img">
+    </div>
+</header>
+
+    <section>
+        <h3>About us and our services</h3>
+    <p>Our firm has over a decade of experience in geotechnical engineering, geotechnical investigations, foundation studies, slope stability, and ground improvement for residential, commercial, and industrial purposes. We also offer structural engineering services. </p>
+
+    </section>
+<!-- === FINAL ULTRA-COMPACT GRID – All black text, no blue === -->
+<div class="services-tight">
+    <div class="services-grid-tight">
+        <div class="service-item">
+            <div class="service-name">Soils Testing<br>Residential</div>
+            <a href="mailto:info@abg-engineering.com?subject=Schedule - Soils Testing Residential" class="schedule-btn">Schedule</a>
+        </div>
+        <div class="service-item">
+            <div class="service-name">Commercial<br>Soils Testing</div>
+            <a href="mailto:info@abg-engineering.com?subject=Schedule - Commercial Soils Testing" class="schedule-btn">Schedule</a>
+        </div>
+        <div class="service-item">
+            <div class="service-name">Footer<br>Inspections</div>
+            <a href="mailto:info@abg-engineering.com?subject=Schedule - Footer Inspections" class="schedule-btn">Schedule</a>
+        </div>
+        <div class="service-item">
+            <div class="service-name">Rebar<br>Inspections</div>
+            <a href="mailto:info@abg-engineering.com?subject=Schedule - Rebar Inspections" class="schedule-btn">Schedule</a>
+        </div>
+        <div class="service-item">
+            <div class="service-name">Structural<br>Inspection</div>
+            <a href="mailto:info@abg-engineering.com?subject=Schedule - Structural Inspection" class="schedule-btn">Schedule</a>
+        </div>
+        <div class="service-item">
+            <div class="service-name">Forensic<br>Investigation</div>
+            <a href="mailto:info@abg-engineering.com?subject=Schedule - Forensic Investigation" class="schedule-btn">Schedule</a>
+        </div>
+        <div class="service-item">
+            <div class="service-name">Soil Report</div>
+            <a href="mailto:info@abg-engineering.com?subject=Schedule - Soil Report" class="schedule-btn">Schedule</a>
+        </div>
+        <div class="service-item">
+            <div class="service-name">Retaining Wall</div>
+            <a href="mailto:info@abg-engineering.com?subject=Schedule - Retaining Wall" class="schedule-btn">Schedule</a>
+        </div>
+        <div class="service-item">
+            <div class="service-name">Foundation<br>Report</div>
+            <a href="mailto:info@abg-engineering.com?subject=Schedule - Foundation Report" class="schedule-btn">Schedule</a>
+        </div>
+        <div class="service-item">
+            <div class="service-name">Geotechnical<br>Consulting</div>
+            <a href="mailto:info@abg-engineering.com?subject=Schedule - Geotechnical Consulting" class="schedule-btn">Schedule</a>
+        </div>
+        <div class="service-item">
+            <div class="service-name">Structural<br>Consulting</div>
+            <a href="mailto:info@abg-engineering.com?subject=Schedule - Structural Consulting" class="schedule-btn">Schedule</a>
+        </div>
+        <div class="service-item">
+            <div class="service-name">Engineering<br>Evaluations</div>
+            <a href="mailto:info@abg-engineering.com?subject=Schedule - Engineering Evaluations" class="schedule-btn">Schedule</a>
+        </div>
+        <div class="service-item">
+            <div class="service-name">Expert<br>Witness Support</div>
+            <a href="mailto:info@abg-engineering.com?subject=Schedule - Expert Witness" class="schedule-btn">Schedule</a>
+        </div>
+        <div class="service-item">
+            <div class="service-name">Slope Stability</div>
+            <a href="mailto:info@abg-engineering.com?subject=Schedule - Slope Stability" class="schedule-btn">Schedule</a>
+        </div>
+        <div class="service-item">
+            <div class="service-name">Site<br>Investigation</div>
+            <a href="mailto:info@abg-engineering.com?subject=Schedule - Site Investigation" class="schedule-btn">Schedule</a>
+        </div>
+    </div>
+</div>
+
+<style>
+.services-tight { padding: 2em 0.5em; text-align: center; }
+.services-grid-tight {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px 10px;
+    max-width: 1000px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+}
+.service-item {
+    background: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 9px;
+    padding: 9px 8px 7px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.07);
+    transition: all 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 82px;
+}
+.service-item:hover {
+    background: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    border-color: #e67e22;
+}
+.service-name {
+    font-size: 18.5px;
+    font-weight: 900;
+    color: #000;           /* ← pure black, consistent */
+    line-height: 1.2;
+    margin: 0 0 2px 0;
+}
+.schedule-btn {
+    font-size: 12.5px;
+    font-weight: bold;
+    background: #0056b3;
+    color: white;
+    padding: 4px 11px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 1px;
+}
+.schedule-btn:hover { background: #e67e22; }
+
+/* Responsive */
+@media (max-width: 900px) {
+    .services-grid-tight { grid-template-columns: repeat(2, 1fr); gap: 9px; }
+}
+@media (max-width: 550px) {
+    .services-grid-tight { grid-template-columns: 1fr; gap: 8px; }
+    .service-item { height: 88px; }
+    .service-name { font-size: 18px; }
+}
+</style>
+
+    <section class="why-choose-us">
+    <h3>Why Choose Us?</h3>
+    <ul class="why-choose-us-grid">
+        <li class="colorado">Colorado-based</li>
+        <li class="pricing">Competitive pricing</li>
+        <li class="family">Small firm</li>
+        <li class="responsive">Responsive</li>
+    </ul>
+</section>
+        
+<section class="contact-us">
+    <h3>Contact Us</h3>
+    <ul class="contact-list">
+        <li class="email">Email: info@abg-engineering.com</li>
+        <li class="phone">Phone: 817-291-2915</li>
+        <li class="address">Address: 2950 Bear Creek Blvd, Lakewood, CO 80228</li>
+    </ul>
+    <div class="cta-button">
+        <a href="mailto:info@abg-engineering.com?subject=Inquiry from Website">Get in Touch</a>
+    </div>
+</section>
+        
+    <footer>
+        <p>© 2025 ABG-Engineering. All rights reserved.</p>
+    </footer>
+</body>
+</html>
