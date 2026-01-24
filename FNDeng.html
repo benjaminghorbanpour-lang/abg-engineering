@@ -1,0 +1,240 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Foundation Engineering - ABG Engineering</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
+
+		<!-- Custom styles to match the index.html service boxes -->
+		<style>
+			/* Services grid – matching the tight grid from index.html */
+			.FNDeng-services {
+				padding: 2em 12px;
+				text-align: center;
+				margin-bottom: 1em; /* Adds space between grid and contact section */
+			}
+
+			.FNDeng-grid {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 12px 10px;
+				max-width: 1000px;
+				margin: 0 auto;
+			}
+
+			.FNDeng-item {
+				background: #c8a2e6;  /* Darker purple background */
+				border: 1px solid #b08bd1;  /* Slightly darker border for definition */
+				border-radius: 9px;
+				padding: 9px 8px 7px;
+				box-shadow: 0 2px 5px rgba(0,0,0,0.07);
+				transition: all 0.25s ease;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				height: 86px;
+				text-align: center;
+			}
+
+			.FNDeng-item:hover {
+				background: #fff;  /* White on hover (keeps good contrast) */
+				transform: translateY(-3px);
+				box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+				border-color: #a66edc;  /* Richer purple accent on hover */
+			}
+
+			.FNDeng-name {
+				font-size: 18px;
+				font-weight: 900;
+				color: #000;
+				line-height: 1.2;
+				margin: 0 0 4px 0;
+			}
+
+			.schedule-btn {
+				font-size: 13px;
+				font-weight: bold;
+				background: #0056b3;
+				color: white;
+				padding: 5px 12px;
+				border-radius: 5px;
+				text-decoration: none;
+			}
+
+			.schedule-btn:hover {
+				background: #e67e22;
+			}
+
+			/* Responsive adjustments */
+			@media (max-width: 560px) {
+				.FNDeng-grid {
+					grid-template-columns: repeat(2, 1fr);
+					gap: 14px;
+				}
+				.FNDeng-item { height: 96px; }
+				.FNDeng-name { font-size: 17px; }
+			}
+
+			@media (max-width: 380px) {
+				.FNDeng-grid {
+					grid-template-columns: 1fr;
+				}
+			}
+
+			/* Reduced spacing for the intro paragraph */
+			.FNDeng-intro {
+				margin-bottom: 1.5em; /* Reduced from 3em */
+				text-align: center;
+			}
+			.FNDeng-intro p {
+				margin: 0.5em 0; /* Tightens space before and after the paragraph */
+			}
+
+			/* More space between "Contact Us" heading and the form */
+			.contact-section h2 {
+				margin-bottom: 2em; /* Increases space below the heading */
+			}
+		</style>
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+		<header id="header">
+			<a href="index.html" class="title">ABG Engineering</a>
+			<nav>
+				<ul>
+					<li><a href="index.html">Home</a></li>
+					<li><a href="Team.html">Our team</a></li>
+					<li><a href="geotech.html">Geotechnical Engineering</a></li>
+					<li><a href="seismic.html">Seismic Engineering</a></li>
+					<li><a href="FNDeng.html" class="active">Residential</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<!-- Wrapper -->
+		<div id="wrapper">
+
+			<!-- Main -->
+			<section id="main" class="wrapper">
+				<div class="inner">
+					<h1 class="major">Residential Services</h1>
+
+					<div class="FNDeng-intro">
+						<p>We provide comprehensive geotechncial engineering services for the residential sector tailored specifically for your project needs.</p>
+					</div>
+
+					<!-- FNDeng Services Grid -->
+					<div class="FNDeng-services">
+						<div class="FNDeng-grid">
+							<div class="FNDeng-item">
+								<div class="FNDeng-name">Soils Testing <br> Soils Reports</div>
+								<a href="mailto:info@abg-engineering.com?subject=Schedule - Soils Testing FNDeng" class="schedule-btn">Schedule</a>
+							</div>
+							<div class="FNDeng-item">
+								<div class="FNDeng-name">Footer <br> Inspections</div>
+								<a href="mailto:info@abg-engineering.com?subject=Schedule - Footer Inspections" class="schedule-btn">Schedule</a>
+							</div>
+							<div class="FNDeng-item">
+								<div class="FNDeng-name">Decks<br>ADUs and Garages</div>
+								<a href="mailto:info@abg-engineering.com?subject=Schedule - Decks & ADUs" class="schedule-btn">Schedule</a>
+							</div>
+							<div class="FNDeng-item">
+								<div class="FNDeng-name">Geotechnical <br> Site Investigations</div>
+								<a href="mailto:info@abg-engineering.com?subject=Schedule - Foundation Report" class="schedule-btn">Schedule</a>
+							</div>
+							<div class="FNDeng-item">
+								<div class="FNDeng-name">Shoring and Retaining Wall Design</div>
+								<a href="mailto:info@abg-engineering.com?subject=Schedule - Retaining Wall" class="schedule-btn">Schedule</a>
+							</div>
+							<div class="FNDeng-item">
+								<div class="FNDeng-name">Deep Foundation<br>Piles, Shafts, Piers</div>
+								<a href="mailto:info@abg-engineering.com?subject=Schedule - Forensic Investigation" class="schedule-btn">Schedule</a>
+							</div>
+							<div class="FNDeng-item">
+								<div class="FNDeng-name">Geotechnical<br> Evaluations and Consulting</div>
+								<a href="mailto:info@abg-engineering.com?subject=Schedule - Geotechnical Consulting" class="schedule-btn">Schedule</a>
+							</div>
+							<div class="FNDeng-item">
+								<div class="FNDeng-name">Expert Witness<br>Support</div>
+								<a href="mailto:info@abg-engineering.com?subject=Schedule - Expert Witness Support" class="schedule-btn">Schedule</a>
+							</div>
+							<div class="FNDeng-item">
+								<div class="FNDeng-name">Slope Stability<br>Analysis</div>
+								<a href="mailto:info@abg-engineering.com?subject=Schedule - Slope Stability Analysis" class="schedule-btn">Schedule</a>
+							</div>
+						</div>
+					</div>
+					
+					<!-- Contact Form -->
+					<section class="contact-section">
+						<h2>Contact Us for Residential Services</h2>
+						<form method="post" action="#">
+							<div class="row gtr-uniform">
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="demo-name" id="demo-name" value="" placeholder="Name" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="email" name="demo-email" id="demo-email" value="" placeholder="Email" />
+								</div>
+								<div class="col-12">
+									<select name="demo-category" id="demo-category">
+										<option value="">- Select Service -</option>
+										<option value="1">Soils Testing and Soils Reports</option>
+										<option value="1">Footer Inspections</option>
+										<option value="1">Decks & ADUs</option>
+										<option value="1">Geotechnical Site Investigations</option>										
+										<option value="1">Shoring and Retaining Wall Design</option>
+										<option value="1">Deep Foundation</option>
+										<option value="1">Geotechnical Consulting</option>
+										<option value="1">Expert Witness Support</option>
+										<option value="1">Slope Stability Analysis</option>
+									</select>
+								</div>
+								<div class="col-12">
+									<textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
+								</div>
+								<div class="col-12">
+									<ul class="actions">
+										<li><input type="submit" value="Send Message" class="primary" /></li>
+										<li><input type="reset" value="Reset" /></li>
+									</ul>
+								</div>
+							</div>
+						</form>
+					</section>
+
+				</div>
+			</section>
+
+		</div>
+
+		<!-- Footer -->
+		<footer id="footer" class="wrapper alt">
+			<div class="inner">
+				<ul class="menu">
+					<li>&copy; 2025 ABG Engineering. All rights reserved.</li>
+					<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+				</ul>
+			</div>
+		</footer>
+
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
